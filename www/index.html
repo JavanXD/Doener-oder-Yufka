@@ -30,43 +30,75 @@
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Döner oder Yufka?</title>
-		<script type="text/javascript">	
-			var counter = 0;		
-			function decide()
-			{
-				counter ++;
-				if (counter % 2 == 0){
-				
-					document.getElementById('decideImage').src = "./img/question.png";
-				
-				}else{
-				
-					if (parseInt(Math.random() * 2)) // random ob Döner oder Yufka
-					{
-						document.getElementById('decideImage').src = "./img/Doener.png";
-					}else{
-						document.getElementById('decideImage').src = "./img/Yufka.png";
-					}
-				}
-				
-			}
-			
-		</script>
+	<script src="./js/jquery.min.js"></script>
+
 </head>
-<body onclick="decide();vibration();">
+<body>
 		<div class="app">
 			<div id="decide"><img src="./img/question.png" id="decideImage"/></div>
 		</div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
         app.initialize();
-		
-		function vibration() {
-		   var time = 300;
-		   navigator.vibrate(time);
-		}
-
     </script>
+	<script type="text/javascript">	
+		$(document).ready(function() {
+		
+			// Play audio
+			function playAudio(url) {
+				// Play the audio file at url
+				var my_media = new Media(url,
+					// success callback
+					function () { console.log("playAudio():Audio Success"); },
+					// error callback
+					function (err) { console.log("playAudio():Audio Error: " + err); }
+				);
+
+				// Play audio
+				my_media.play();
+			}	
+			
+			// Vibration
+			function vibration(time) {
+			   navigator.vibrate(time);
+			}
+			
+			var counter = 0;	
+			var small={width: "2px",height: "auto"};
+			var large={width: "320px",height: "auto"};
+
+			function decide()
+			{
+				counter ++;
+				if (counter % 2 == 0){
+					document.body.style.backgroundImage = "linear-gradient(#689f38, #90f77f)";
+					document.getElementById('decideImage').src = "./img/question.png";
+					$("img#decideImage").css(large);
+					vibration(100);
+				}else{
+					document.body.style.background = "url('/img/roulet.gif') no-repeat center center";
+					if (parseInt(Math.random() * 2)) // random ob Döner oder Yufka
+					{
+						document.getElementById('decideImage').src = "./img/Doener.png";
+						
+						var count=0; 
+						$("img#decideImage").css(small);
+						$("img#decideImage").animate(large, 2000);
+
+
+					}else{
+						document.getElementById('decideImage').src = "./img/Yufka.png";
+						$("img#decideImage").css(small);
+						$("img#decideImage").animate(large, 2000);
+					}
+					vibration([[50],[50]]);
+					playAudio("./mp3/Ta-Da.mp3");
+				}
+				
+			}
+			document.body.addEventListener ('click', decide, false);
+		});
+	</script>
 </body>
 
 </html>
