@@ -62,6 +62,13 @@
 			function vibration(time) {
 			   navigator.vibrate(time);
 			}
+			function getPhoneGapPath() {
+
+				var path = window.location.pathname;
+				path = path.substr( path, path.length - 10 );
+				return 'file://' + path;
+
+			};
 			
 			var counter = 0;	
 			var small={width: "2px",height: "auto"};
@@ -74,9 +81,9 @@
 					document.body.style.backgroundImage = "linear-gradient(#689f38, #90f77f)";
 					document.getElementById('decideImage').src = "./img/question.png";
 					$("img#decideImage").css(large);
-					vibration(100);
+					vibration(200);
 				}else{
-					document.body.style.backgroundImage = "url('/img/roulet.gif')";
+					document.body.style.backgroundImage = "url('./img/roulet.gif')";
 					if (parseInt(Math.random() * 2)) // random ob Döner oder Yufka
 					{
 						document.getElementById('decideImage').src = "./img/Doener.png";
@@ -91,8 +98,8 @@
 						$("img#decideImage").css(small);
 						$("img#decideImage").animate(large, 2000);
 					}
-					vibration([50,50]);
-					playAudio("./mp3/Ta-Da.mp3");
+					playAudio(getPhoneGapPath() + "/mp3/Ta-Da.mp3");
+					vibration([350,250,350,250,350]);
 				}
 				
 			}
