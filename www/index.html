@@ -76,7 +76,7 @@
 					$("img#decideImage").css(large);
 					vibration(100);
 				}else{
-					document.body.style.background = "url('/img/roulet.gif') no-repeat center center";
+					document.body.style.backgroundImage = "url('/img/roulet.gif')";
 					if (parseInt(Math.random() * 2)) // random ob Döner oder Yufka
 					{
 						document.getElementById('decideImage').src = "./img/Doener.png";
@@ -91,7 +91,7 @@
 						$("img#decideImage").css(small);
 						$("img#decideImage").animate(large, 2000);
 					}
-					vibration([[50],[50]]);
+					vibration([50,50]);
 					playAudio("./mp3/Ta-Da.mp3");
 				}
 				
