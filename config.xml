@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.javan.yufka" version="1.0.1" >
 	<name>Döner oder Yufka?</name>
-	<description>Die App entscheidet!</description>
+	<description>Die App entscheidet! Gibt es heute Döner oder Yufka zu essen?</description>
 	<author email="apps@javan.de" href="https://javan.de/">Javan Rasokat</author>
 	<content src="index.html"/>
 
@@ -15,9 +15,9 @@
 	<preference name="BackupWebStorage" value="none"/>
 	<preference name="SplashScreen" value="screen"/>
 	<preference name="SplashScreenDelay" value="3000"/>
-	
+
 	<preference name="android-minSdkVersion" value="16"/>
-	<preference name="android-targetSdkVersion" value="19" />
+	<preference name="android-targetSdkVersion" value="28" />
 
 	<plugin name="cordova-plugin-vibration" spec="2.1.1" />
 	<plugin name="cordova-plugin-media" spec="1.0.1" />
